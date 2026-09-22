@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <title>alpine-test-1</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <p>
+      <span x-text="message"></span>
+      </p>
+      <p>
+      <button @click="meow()">Meow (default)</button>
+      <button @click="meow('Purr...')">Meow (custom)</button>
+      </p>
+      <ul>
+        <template x-for="(cat, index) in cats" :key="index">
+          <li x-text="cat.name"></li>
+        </template>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
