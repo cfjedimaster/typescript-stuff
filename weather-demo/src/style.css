@@ -1,0 +1,13 @@
+.container {
+  max-width: 72ch;
+  margin-inline: auto;
+  padding: 2rem 1rem;
+}
+
+.card-basic {
+  max-width: 300px;
+  h3 {
+    margin: 0;
+  }
+}
+

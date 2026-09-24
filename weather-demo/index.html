@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="wa-dark">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Demo</title>
+  </head>
+  <body>
+    <div x-data="app" class="container wa-stack">
+
+      <header>
+        <h1>Weather Demo</h1>
+      </header>
+
+      <template x-if="locations.length === 0"> 
+        <p>No locations added yet. Add a location to get started.</p>
+      </template>
+      <div class="wa-grid wa-gap-1" style="--min-column-size: 30ch;">
+      <template x-for="location in locations" :key="location.name">
+        <wa-card class="card-basic" >
+          <h3 slot="header" x-text="location.name"></h3>
+          <wa-button appearance="plain" @click="removeLocation(location.name)" slot="header-actions">
+            <wa-icon name="trash" variant="solid" label="Delete"></wa-icon>
+          </wa-button>
+          <template x-if="location.weather">
+            <p x-html="`Temperature: ${location.weather.temperature}°F<br/>Condition: ${location.weather.summary}<br>Low: ${location.weather.low}°F<br/>High: ${location.weather.high}°F`"></p>
+          </template>
+          <template x-if="!location.weather">
+            <p>Loading weather data...</p>
+          </template>
+        </wa-card>
+      </template>
+        </div>
+
+      <div class="wa-flank:end wa-gap-xs">
+      <wa-input placeholder="New Location (America, Canada, Mexico, UK only)" x-model="newLocation"></wa-input>
+      <wa-button variant="brand" @click="addLocation(newLocation)">Add</wa-button>
+      </div>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
