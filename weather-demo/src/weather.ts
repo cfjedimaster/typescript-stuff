@@ -13,5 +13,5 @@ export async function getWeather(lat: number, lng: number): Promise<WeatherData>
         low: res.daily.data[0].temperatureLow,
         high: res.daily.data[0].temperatureHigh
     };
-    //return res;
+
 }
