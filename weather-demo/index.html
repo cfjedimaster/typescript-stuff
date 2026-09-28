@@ -16,10 +16,10 @@
         <p>No locations added yet. Add a location to get started.</p>
       </template>
       <div class="wa-grid wa-gap-1" style="--min-column-size: 30ch;">
-      <template x-for="location in locations" :key="location.name">
+      <template x-for="(location,index) in locations" :key="location.name">
         <wa-card class="card-basic" >
           <h3 slot="header" x-text="location.name"></h3>
-          <wa-button appearance="plain" @click="removeLocation(location.name)" slot="header-actions">
+          <wa-button appearance="plain" @click="removeLocation(index)" slot="header-actions">
             <wa-icon name="trash" variant="solid" label="Delete"></wa-icon>
           </wa-button>
           <template x-if="location.weather">
