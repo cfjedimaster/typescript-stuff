@@ -1,20 +1,37 @@
 import Alpine from 'alpinejs';
 
-type Cat = {
-  name: string;
-  breed: string;
-  gender: 'male' | 'female';
-};
+import '@awesome.me/webawesome/dist/styles/webawesome.css';
+import '@awesome.me/webawesome/dist/components/button/button.js';
+import '@awesome.me/webawesome/dist/components/dialog/dialog.js';
+import '@awesome.me/webawesome/dist/components/input/input.js';
+import '@awesome.me/webawesome/dist/components/page/page.js'
+
+import './style.css';
+import type { SavedFeed } from './types';
+import { getFeeds, addFeed, removeFeed } from './storage';
+
 
 Alpine.data('app', () => ({
-  message:'Hello from Alpine!',
-  cats: [] as Cat[],
+  feeds: [] as SavedFeed[],
+  newFeedUrl: '',
   init() {
-    this.cats.push({ name: 'Whiskers', breed: 'Siamese', gender: 'male' });
-    this.cats.push({ name: 'Fluffy', breed: 'Persian', gender: 'female' });
+    this.feeds = getFeeds();
   },
-  meow(message:string = 'Meow!') {
-    alert(message);
+  showDialog() {
+    const dialog = this.$refs.feedsDialog as HTMLDialogElement;
+    if(!dialog) return;
+    dialog.open = true;
+  },
+  storeFeed(url: string) {
+    if(!url) return;
+    const newFeed: SavedFeed = { url };
+    this.feeds.push(newFeed);
+    addFeed(newFeed);
+    this.newFeedUrl = '';
+  },
+  removeStoredFeed(index: number) {
+    this.feeds.splice(index, 1);
+    removeFeed(index);
   }
 }));
 

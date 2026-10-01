@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--wa-space-s) var(--wa-space-l);
+  background-color: var(--wa-color-brand-fill-loud);
+  color: var(--wa-color-brand-on-loud);
+}
+
+.app-title {
+  margin: 0;
+  font-size: var(--wa-font-size-l);
+}
+
+main {
+  padding: var(--wa-space-l);
+}
+
+.feeds-table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+}
+
+.feeds-table th:last-child,
+.feeds-table td:last-child {
+  width: 6rem;
+}
+
+.feed-url {
+  overflow-wrap: anywhere;
+}

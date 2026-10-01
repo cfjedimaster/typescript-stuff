@@ -1,27 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="wa-dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <title>alpine-test-1</title>
+    <title>RSS Reader</title>
   </head>
   <body>
-    <div x-data="app">
-      <p>
-      <span x-text="message"></span>
-      </p>
-      <p>
-      <button @click="meow()">Meow (default)</button>
-      <button @click="meow('Purr...')">Meow (custom)</button>
-      </p>
-      <ul>
-        <template x-for="(cat, index) in cats" :key="index">
-          <li x-text="cat.name"></li>
+
+    <wa-page disable-navigation-toggle x-data="app">
+      <header slot="header" class="app-header">
+        <h1 class="app-title">My App</h1>
+        <wa-button variant="neutral" @click="showDialog">Feeds</wa-button>
+      </header>
+
+      <main>
+        <p>Main content</p>
+      </main>
+
+      <wa-dialog label="Feeds" x-ref="feedsDialog">
+        <template x-if="feeds.length === 0">
+          <p>No feeds added yet. Add a feed to get started.</p>
         </template>
-      </ul>
-    </div>
+        <template x-if="feeds.length > 0">
+        <table class="feeds-table">
+          <thead>
+            <tr>
+              <th scope="col">URL</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="(feed,index) in feeds" :key="feed.url">
+              <tr>
+                <td class="feed-url" x-text="feed.url"></td>
+                <td>
+                  <wa-button appearance="plain" @click="removeStoredFeed(index)" aria-label="Remove feed">
+                    <wa-icon name="trash" variant="solid" label="Remove feed"></wa-icon>
+                  </wa-button>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        </template>
+        <div class="wa-flank:end wa-gap-xs">
+        <wa-input placeholder="New Feed URL" x-model="newFeedUrl"></wa-input>
+        <wa-button variant="brand" @click="storeFeed(newFeedUrl)">Add</wa-button>
+        </div>
+
+      </wa-dialog>
+
+    </wa-page>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
