@@ -36,3 +36,7 @@ main {
 .feed-url {
   overflow-wrap: anywhere;
 }
+
+wa-card {
+  margin-block-end: var(--wa-space-m);
+}

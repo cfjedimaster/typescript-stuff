@@ -1,5 +1,5 @@
 {
-  "name": "alpine-test-1",
+  "name": "rss-reader-1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,15 @@
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.11",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vite": "^8.3.0"
   },
   "dependencies": {
     "@awesome.me/webawesome": "^3.14.0",
     "@netlify/functions": "^6.0.0",
     "@types/node": "^22.20.4",
-    "alpinejs": "^3.17.4"
+    "alpinejs": "^3.17.4",
+    "rss-parser": "^3.13.0",
+    "vite-plugin-checker": "^0.14.5"
   }
 }

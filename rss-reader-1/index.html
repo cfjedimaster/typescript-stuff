@@ -15,7 +15,21 @@
       </header>
 
       <main>
-        <p>Main content</p>
+        <template x-if="feeds.length === 0">
+          <p>No feeds added yet. Add a feed to get started.</p>
+        </template>
+        <template x-if="feeds.length > 0 && feedItems.length === 0">
+          <p>Fetching feed items...</p>
+        </template>
+        <template x-for="item in feedItems" :key="item.link">
+          <wa-card>
+            <h3 slot="header" x-text="item.title"></h3>
+            <p x-text="item.content"></p>
+            <p slot="footer">
+              <span x-text="item.feedTitle"></span> - <span x-text="formatDate(item.pubDate)"></span>
+            </p>
+          </wa-card>
+        </template>
       </main>
 
       <wa-dialog label="Feeds" x-ref="feedsDialog">
